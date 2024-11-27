@@ -33,7 +33,14 @@
             $controller->create();
             break;
 
+        case '/board/edit' :
+            $controller = BoardController::getInstance();
+            $controller->edit();
+            break;
+
         case '/board/update' :
+            $controller = BoardController::getInstance();
+            $controller->update();
             break;
 
         case '/board/delete' :

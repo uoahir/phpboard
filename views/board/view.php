@@ -42,6 +42,7 @@ if (isset($_SESSION['userId'])) {
                 <input type="hidden" name="id" value="<?php echo $board->getBoardId(); ?>">
                 <button type="submit" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
             </form>
+            <button onclick="location.href='/board/edit?id=<?php echo $board->getBoardId(); ?>'">글 수정</button>
         <?php endif; ?>
     </div>
     <?php endif; ?>

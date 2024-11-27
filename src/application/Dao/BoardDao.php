@@ -26,7 +26,8 @@ class BoardDao {
     public function list() {
         $sql = "SELECT B.id, B.title, B.content, U.name, B.createdAt 
                 FROM BOARDS B 
-                INNER JOIN USERS U ON B.writerId = U.id";
+                INNER JOIN USERS U ON B.writerId = U.id
+                ORDER BY B.createdAt desc";
 
         $result = $this -> conn ->query($sql);
 
@@ -51,7 +52,7 @@ class BoardDao {
         return $boards;
     }
 
-    public function view($id) {
+    public function getBoardById($id) {
         $sql = "SELECT B.id, B.title, B.content, U.name, B.writerId, B.createdAt 
                 FROM BOARDS B 
                 INNER JOIN USERS U ON B.writerId = U.id
@@ -77,6 +78,9 @@ class BoardDao {
             $boardData['createdAt']
         );
 
+        if (isset($stmt)) {
+            $stmt->close(); // stmt 자원 해제
+        }
         $this->conn->close();
 
         return $boardDTO;
@@ -95,13 +99,30 @@ class BoardDao {
             $this->conn->rollback();
             throw $e;
         } finally {
+            if (isset($stmt)) {
+                $stmt->close();
+            }
             $this->conn->close();
         }
 
     }
 
-    public function update() {
-
+    public function update($id, $title, $content) {
+        try{
+            $sql = "UPDATE BOARDS SET title=?, content=? WHERE id=?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bind_param('ssi',$title,$content, $id);
+            $stmt->execute();
+            $this->conn->commit();
+        } catch (\Exception $e) {
+            $this->conn->rollback();
+            throw $e;
+        } finally {
+            if (isset($stmt)) {
+                $stmt->close();
+            }
+            $this->conn->close();
+        }
     }
 
     public function delete($id) {
@@ -117,6 +138,9 @@ class BoardDao {
             $this->conn->rollback();
             throw $e;
         } finally {
+            if (isset($stmt)) {
+                $stmt->close();
+            }
             $this->conn->close();
         }
 
