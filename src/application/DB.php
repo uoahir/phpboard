@@ -40,6 +40,18 @@ class DB
     {
         return $this->conn;
     }
+
+    // autocommit 비활성화 메서드
+    public function setAutocommit($mode)
+    {
+        $this->conn->autocommit($mode); // true: 활성화, false: 비활성화
+    }
+
+    // autocommit 상태 확인 메서드
+    public function getAutocommit()
+    {
+        return $this->conn->get_autocommit(); // 1(활성화) 또는 0(비활성화)
+    }
 }
 
 ?>

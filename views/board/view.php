@@ -43,8 +43,6 @@ if (isset($_SESSION['userId'])) {
                 <button type="submit" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
             </form>
         <?php endif; ?>
-
-        <a href="/">목록으로 돌아가기</a>
     </div>
     <?php endif; ?>
 </div>

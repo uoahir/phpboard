@@ -10,8 +10,10 @@ class BoardDao {
     private static $instance = null;
     private $conn;
 
+
     private function __construct() {
         $this->conn = DB::getInstance()->getConnection();
+        $this->conn->autocommit(false);
     }
 
     public static function getInstance() {
@@ -80,7 +82,21 @@ class BoardDao {
         return $boardDTO;
     }
 
-    public function write() {
+    public function create($title, $content, $writerId) {
+
+        try{
+            $sql = "INSERT INTO BOARDS (title, content, writerId) VALUES (?, ?, ?)";
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bind_param('ssi',$title,$content, $writerId);
+            $stmt->execute();
+            $this->conn->commit();
+        } catch (\Exception $e) {
+            $this->conn->rollback();
+            throw $e;
+        } finally {
+            $this->conn->close();
+        }
 
     }
 
@@ -89,13 +105,21 @@ class BoardDao {
     }
 
     public function delete($id) {
-        $sql = "DELETE FROM BOARDS WHERE ID = ?";
 
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param('i',$id);
-        $stmt->execute();
-        $this->conn->commit();
-        $this->conn->close();
+        try{
+            $sql = "DELETE FROM BOARDS WHERE ID = ?";
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bind_param('i',$id);
+            $stmt->execute();
+            $this->conn->commit();
+        } catch (\Exception $e){
+            $this->conn->rollback();
+            throw $e;
+        } finally {
+            $this->conn->close();
+        }
+
     }
 
 }

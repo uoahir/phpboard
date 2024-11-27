@@ -49,9 +49,9 @@
         </thead>
         <tbody>
         <?php if(isset($boards)): ?>
-            <?php foreach ($boards as $board): ?>
+            <?php foreach ($boards as $index => $board): ?>
                 <tr>
-                    <td><?php echo $board->getBoardId(); ?></td>
+                    <td><?php echo $index + 1; ?></td>
                     <td><a href="/board/view?id=<?php echo $board->getBoardId(); ?>"><?php echo $board->getTitle(); ?></a></td>
                     <td><?php echo $board->getWriter(); ?></td>
                     <td>

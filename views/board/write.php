@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -16,18 +19,25 @@
         </nav>
     </div>
 </header>
+<?php
+// 에러 메시지가 세션에 저장되어 있으면 alert 창으로 출력
+if (isset($_SESSION['error'])) {
+    echo "<script>alert('" . $_SESSION['error'] . "');</script>";
+    unset($_SESSION['error']);
+}
+?>
 
 <div id="write-form-container">
     <h2>글쓰기</h2>
-    <form action="/board/write" method="POST">
+    <form action="/board/create" method="POST">
         <div class="form-group">
             <label for="title">제목</label>
-            <input type="text" id="title" name="title" placeholder="제목을 입력하세요" required>
+            <input type="text" id="title" name="title" placeholder="제목을 입력하세요">
         </div>
 
         <div class="form-group">
             <label for="content">내용</label>
-            <textarea id="content" name="content" placeholder="내용을 입력하세요" rows="10" required></textarea>
+            <textarea id="content" name="content" placeholder="내용을 입력하세요" rows="10"></textarea>
         </div>
 
         <div class="form-group">

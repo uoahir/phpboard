@@ -9,7 +9,9 @@ class BoardController {
 
     private static $instance = null;
 
-    private function __construct() {}
+    private function __construct() {
+        session_start();
+    }
 
     public static function getInstance() {
         if(self::$instance == null) {
@@ -17,6 +19,7 @@ class BoardController {
         }
         return self::$instance;
     }
+
 
     public function list() {
         $boards = BoardService::getInstance()->list();
@@ -35,6 +38,48 @@ class BoardController {
 
     public function write() {
         include '/Users/uoahir/Desktop/study/phpboard/views/board/write.php';
+    }
+
+    public function create() {
+        if(!isset($_SESSION['userId'])) {
+            header('Location: /');
+            exit;
+        }
+
+        $title = $_POST['title'];
+        $content = $_POST['content'];
+        $writerId = $_SESSION['userId'];
+
+        // 제목과 내용 필수값 확인
+        if (empty($title)) {
+            $_SESSION['error'] = "제목은 필수 입력 항목입니다.";
+            header('Location: /board/write');
+            exit;
+        }
+
+        if (empty($content)) {
+            $_SESSION['error'] = "내용은 필수 입력 항목입니다.";
+            header('Location: /board/write');
+            exit;
+        }
+
+        // 제목과 내용 길이 제한 체크
+        if (strlen($title) > 100) {
+            $_SESSION['error'] = "제목은 100자 이내로 작성해야 합니다.";
+            header('Location: /board/write');
+            exit;
+        }
+
+        if (strlen($content) > 1000) {
+            $_SESSION['error'] = "내용은 1000자 이내로 작성해야 합니다.";
+            header('Location: /board/write');
+            exit;
+        }
+
+        BoardService::getInstance()->create($title, $content, $writerId);
+
+        header('Location: /');
+        exit;
     }
 
     public function delete() {

@@ -28,6 +28,11 @@
             $controller->write();
             break;
 
+        case '/board/create' :
+            $controller = BoardController::getInstance();
+            $controller->create();
+            break;
+
         case '/board/update' :
             break;
 

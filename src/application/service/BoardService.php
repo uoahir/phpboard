@@ -25,8 +25,8 @@ class BoardService {
         return BoardDao::getInstance()->view($id);
     }
 
-    public function write() {
-
+    public function create($title, $content, $writerId) {
+        return BoardDao::getInstance()->create($title, $content, $writerId);
     }
 
     public function delete($id) {
