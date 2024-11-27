@@ -26,6 +26,10 @@ class BoardController {
     public function view() {
         $id = $_GET['id'];
         $board = BoardService::getInstance()->view($id);
+
+        // 뷰로 전달
+        extract(['board' => $board]); // view.php에서 board undefined로 떠서 추가함.
+
         include '/Users/uoahir/Desktop/study/phpboard/views/board/view.php';
     }
 

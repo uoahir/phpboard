@@ -26,7 +26,8 @@ if (isset($_SESSION['userId'])) {
     </div>
 </header>
 <div class="container">
-    <h1>게시글 상세보기</h1>
+    <h3>게시글 상세보기</h3>
+    <?php if (isset($board)) :?>
     <div class="board-detail">
         <h2><?php echo htmlspecialchars($board->getTitle()); ?></h2>
         <p><strong>작성자:</strong> <?php echo htmlspecialchars($board->getWriter()); ?></p>
@@ -45,6 +46,7 @@ if (isset($_SESSION['userId'])) {
 
         <a href="/">목록으로 돌아가기</a>
     </div>
+    <?php endif; ?>
 </div>
 </body>
 </html>
