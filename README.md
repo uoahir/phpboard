@@ -51,7 +51,7 @@
        ```
 
 4. **MariaDB/MySQL 데이터베이스 설정**:
-   - MariaDB/MySQL에 데이터베이스를 생성한 후, 첨부된 `phpboard.sql` 파일을 실행하여 테이블과 더미 데이터를 생성합니다.
+   - MariaDB/MySQL에 데이터베이스를 생성한 후, 첨부된 `phpboard.sql` 파일을 실행하여 테이블과 더미 데이터, 인덱스를 생성합니다.
      
 5. **.htaccess 설정**:
    - `.htaccess` 파일을 통해 모든 요청을 `index.php`로 리디렉션하도록 설정합니다. 해당 파일에 다음과 같은 내용을 추가합니다:
