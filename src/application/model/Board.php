@@ -1,19 +1,22 @@
 <?php
 
+namespace Uoahir\Phpboard\application\model;
 class Board
 {
     private $boardId;
     private $title;
     private $content;
+    private $writer;
     private $writerId;
     private $createdAt;
 
-    public function __construct($boardId, $title, $content, $writerId, $createdAt)
+    public function __construct($boardId, $title, $content, $writer, $writerId, $createdAt)
     {
         $this->boardId = $boardId;
         $this->title = $title;
         $this->content = $content;
-        $this->writerId = $writerId;
+        $this->writer= $writer;
+        $this->writerId= $writerId;
         $this->createdAt = $createdAt;
     }
 
@@ -32,6 +35,14 @@ class Board
         return $this->content;
     }
 
+    public function getWriter()
+    {
+        return $this->writer;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getWriterId()
     {
         return $this->writerId;

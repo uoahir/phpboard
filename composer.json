@@ -1,9 +1,10 @@
 {
-  "autoload": {
-    "psr-4": {
-      "service\\": "application/service/",
-      "controller\\": "application/controller/",
-      "dao\\": "application/dao/"
-    }
-  }
+    "name": "uoahir/phpboard",
+    "description": "phpboard",
+    "autoload": {
+        "psr-4": {
+            "Uoahir\\Phpboard\\": "src/"
+        }
+    },
+    "require": {}
 }

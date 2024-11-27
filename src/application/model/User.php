@@ -1,5 +1,6 @@
 <?php
 
+namespace Uoahir\Phpboard\application\model;
 class User
 {
     private $userId;
@@ -9,7 +10,8 @@ class User
     private $createdAt;
 
 //  생성자
-    public function __construct($userId, $email, $password, $name, $createdAt) {
+    public function __construct($userId, $email, $password, $name, $createdAt)
+    {
         $this->userId = $userId;
         $this->email = $email;
         $this->password = $password;
@@ -18,20 +20,32 @@ class User
     }
 
 //  getter 구현
-    public function getUserId() {
+    public function getUserId()
+    {
         return $this->userId;
     }
 
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function getCreatedAt() {
+    public function getCreatedAt()
+    {
         return $this->createdAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
     }
 
 }
