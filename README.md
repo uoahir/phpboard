@@ -27,6 +27,7 @@
 - 서버 : Apache 2.4.56
 - 프로그래밍 언어 : PHP 8.2.4
 - 데이터베이스 : MariaDB 10.4.28
+- IDE : intelliJ
 - 기타 : HTML, CSS, JAVASCRIPT
 
 ### 📄 설치 및 실행 가이드
