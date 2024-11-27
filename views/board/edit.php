@@ -29,18 +29,15 @@ if (isset($_SESSION['error'])) {
 <div id="write-form-container">
     <h2>글 수정</h2>
     <form action="/board/update" method="POST">
-        <!-- 게시글 ID를 hidden 필드로 전달 -->
         <input type="hidden" name="id" value="<?php echo htmlspecialchars($board->getBoardId()); ?>">
 
         <div class="form-group">
             <label for="title">제목</label>
-            <!-- 기존 제목을 value로 넣음 -->
             <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($board->getTitle()); ?>" placeholder="제목을 입력하세요">
         </div>
 
         <div class="form-group">
             <label for="content">내용</label>
-            <!-- 기존 내용을 value로 넣음 -->
             <textarea id="content" name="content" placeholder="내용을 입력하세요" rows="10"><?php echo htmlspecialchars($board->getContent()); ?></textarea>
         </div>
 

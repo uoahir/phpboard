@@ -2,7 +2,6 @@
 
 namespace Uoahir\Phpboard\application\controller;
 
-use Uoahir\Phpboard\application\model\Board;
 use Uoahir\Phpboard\application\service\BoardService;
 
 class BoardController {
@@ -23,7 +22,7 @@ class BoardController {
 
     public function list() {
         $boards = BoardService::getInstance()->list();
-        include '/Users/uoahir/Desktop/study/phpboard/views/home.php';
+        include __DIR__ . '/../../../views/home.php';
     }
 
     public function view() {
@@ -33,11 +32,11 @@ class BoardController {
         // 뷰로 전달
         extract(['board' => $board]); // view.php에서 board undefined로 떠서 추가함.
 
-        include '/Users/uoahir/Desktop/study/phpboard/views/board/view.php';
+        include __DIR__ .'/../../../views/board/view.php';
     }
 
     public function write() {
-        include '/Users/uoahir/Desktop/study/phpboard/views/board/write.php';
+        include __DIR__ .'/../../../views/board/write.php';
     }
 
     public function create() {
@@ -80,7 +79,7 @@ class BoardController {
         $id = $_GET['id'];
         $board = BoardService::getInstance()->getBoardById($id);
 
-        include '/Users/uoahir/Desktop/study/phpboard/views/board/edit.php';
+        include __DIR__ .'/../../../views/board/edit.php';
     }
 
     public function update() {
@@ -122,9 +121,6 @@ class BoardController {
 
     public function delete() {
         $id = $_POST['id'];
-
-        // id 값 출력
-        echo "ID: " . $id;
 
         BoardService::getInstance()->delete($id);
 
