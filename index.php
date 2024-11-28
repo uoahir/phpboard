@@ -58,6 +58,20 @@
             $controller->logout();
             break;
 
+        case '/auth/register' :
+            $controller = UserController::getInstance();
+            $controller->register();
+            break;
+
+        case '/auth/check/email' :
+            $controller = UserController::getInstance();
+            $controller->checkEmail();
+            break;
+
+        case '/auth/signup' :
+            $controller = UserController::getInstance();
+            $controller->signup();
+
         default :
             echo "페이지를 찾을 수 없습니다. 관리자에게 문의하세요."; // error 페이지 만들기
             break;

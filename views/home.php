@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판</title>
-<!--    <link rel="stylesheet" href="/css/home.css">-->
+    <link rel="stylesheet" href="/css/home.css">
 </head>
 <body>
 <header>
@@ -28,6 +28,7 @@
                         <input type="text" name="email" placeholder="이메일" required>
                         <input type="password" name="password" placeholder="비밀번호" required>
                         <button type="submit">로그인</button>
+                        <button onclick="location.href='/auth/register'">회원가입</button>
                     </form>
                 <?php endif; ?>
             </div>

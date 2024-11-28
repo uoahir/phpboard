@@ -27,17 +27,14 @@ if (isset($_SESSION['error'])) {
 
 <?php if(isset($board)) :?>
 <div id="write-form-container">
-    <h2>글 수정</h2>
     <form action="/board/update" method="POST">
         <input type="hidden" name="id" value="<?php echo htmlspecialchars($board->getBoardId()); ?>">
 
         <div class="form-group">
-            <label for="title">제목</label>
             <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($board->getTitle()); ?>" placeholder="제목을 입력하세요">
         </div>
 
         <div class="form-group">
-            <label for="content">내용</label>
             <textarea id="content" name="content" placeholder="내용을 입력하세요" rows="10"><?php echo htmlspecialchars($board->getContent()); ?></textarea>
         </div>
 

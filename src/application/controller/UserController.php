@@ -48,4 +48,32 @@ class UserController {
         header("Location: /");  // 로그아웃 후 리다이렉트
         exit();
     }
+
+    public function register() {
+        include __DIR__ .'/../../../views/user/register.php';
+    }
+
+    public function checkEmail() {
+        $data = json_decode(file_get_contents('php://input'), true);
+        $email = $data['email'] ?? '';
+
+        // 유효성 검사
+        if (!$email) {
+            http_response_code(400);
+            echo json_encode(['error' => '아이디가 입력되지 않았습니다.']);
+            exit;
+        }
+
+        $user = UserService::getInstance()->getUserByEmail($email);
+
+        if($user) {
+            echo json_encode(['exists' => true]);
+        } else {
+            echo json_encode(['exists' => false]);
+        }
+    }
+
+    public function signup() {
+
+    }
 }

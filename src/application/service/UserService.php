@@ -25,4 +25,8 @@ class UserService {
         }
         return $user;
     }
+
+    public function getUserByEmail($email) {
+        return UserDao::getInstance()->getUserByEmail($email);
+    }
 }

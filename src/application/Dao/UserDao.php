@@ -41,6 +41,9 @@ class UserDao {
             null
         );
 
+        if (isset($stmt)) {
+            $stmt->close();
+        }
         $this->conn->close();
 
         return $userDTO;
