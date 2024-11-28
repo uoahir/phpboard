@@ -48,4 +48,25 @@ class UserDao {
 
         return $userDTO;
     }
+
+    public function register($email, $hashedPassword, $name) {
+
+        try {
+            $sql = "INSERT INTO USERS (email, password, name) VALUES (?, ?, ?)";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bind_param('sss', $email, $hashedPassword, $name);
+
+            return $stmt->execute();
+
+        } catch (\Exception $e) {
+            $this->conn->rollback();
+            throw $e;
+
+        } finally {
+            if (isset($stmt)) {
+                $stmt->close();
+            }
+            $this->conn->close();
+        }
+    }
 }

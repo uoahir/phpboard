@@ -92,7 +92,7 @@ class BoardDao {
             $sql = "INSERT INTO BOARDS (title, content, writerId) VALUES (?, ?, ?)";
 
             $stmt = $this->conn->prepare($sql);
-            $stmt->bind_param('ssi',$title,$content, $writerId);
+            $stmt->bind_param('ssi', $title, $content, $writerId);
             $stmt->execute();
             $this->conn->commit();
         } catch (\Exception $e) {

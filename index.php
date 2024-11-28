@@ -71,6 +71,7 @@
         case '/auth/signup' :
             $controller = UserController::getInstance();
             $controller->signup();
+            break;
 
         default :
             echo "페이지를 찾을 수 없습니다. 관리자에게 문의하세요."; // error 페이지 만들기

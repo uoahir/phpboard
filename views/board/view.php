@@ -1,11 +1,5 @@
 <?php
 session_start();  // 세션 시작
-
-if (isset($_SESSION['userId'])) {
-    echo "로그인한 사용자 ID: " . $_SESSION['userId'];
-} else {
-    echo "로그인되지 않았습니다.";
-}
 ?>
 <!DOCTYPE html>
 <html lang="ko">

@@ -10,7 +10,7 @@
 <body>
 <div class="container">
     <h1>회원가입</h1>
-    <form action="/auth/signup" method="POST">
+    <form id="registerForm">
         <!-- 이름 입력 -->
         <div class="form-group">
             <label for="name">이름</label>
@@ -47,7 +47,7 @@
 
     <!-- 로그인 페이지로 이동 -->
     <div class="login-link">
-        <p>이미 계정이 있으신가요? <a href="/auth/login.php">로그인하기</a></p>
+        <p>이미 계정이 있으신가요? <a href="/">로그인하기</a></p>
     </div>
 </div>
 </body>

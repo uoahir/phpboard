@@ -29,4 +29,8 @@ class UserService {
     public function getUserByEmail($email) {
         return UserDao::getInstance()->getUserByEmail($email);
     }
+
+    public function register($email, $hashedPassword, $name) {
+        return UserDao::getInstance()->register($email, $hashedPassword, $name);
+    }
 }
