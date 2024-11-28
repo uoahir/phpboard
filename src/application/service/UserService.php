@@ -20,7 +20,7 @@ class UserService {
     public function login($email, $password) {
         $user = UserDao::getInstance()->getUserByEmail($email);
 
-        if(!$user || password_verify($password, $user->getPassword())) {
+        if(!$user || !password_verify($password, $user->getPassword())) {
             throw new \Exception('잘못된 이메일 또는 비밀번호');
         }
         return $user;
