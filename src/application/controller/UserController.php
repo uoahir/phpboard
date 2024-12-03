@@ -3,6 +3,7 @@
 namespace Uoahir\Phpboard\application\controller;
 
 use Uoahir\Phpboard\application\service\UserService;
+use \Firebase\JWT\JWT;
 
 class UserController {
     private static $instance = null;
