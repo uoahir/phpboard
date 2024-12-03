@@ -9,7 +9,9 @@ class BoardController {
     private static $instance = null;
 
     private function __construct() {
-        session_start();
+        if(!session_id()){
+            session_start(); // session이 존재하지 않을 때만 session_start();
+        }
     }
 
     public static function getInstance() {

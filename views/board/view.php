@@ -1,5 +1,7 @@
 <?php
-session_start();  // 세션 시작
+    if(!session_id()){
+        session_start();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -7,7 +9,6 @@ session_start();  // 세션 시작
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시글 상세보기</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header>

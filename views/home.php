@@ -1,3 +1,8 @@
+<?php
+    if(!session_id()){
+        session_start();
+    }
+?>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -15,7 +20,6 @@
         <div id="header-login">
             <div id="login">
                 <?php
-                session_start();
                 // 로그인 상태 확인
                 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true): ?>
                     <!-- 로그인 상태일 때: 로그아웃 버튼 -->
@@ -25,7 +29,7 @@
                 <?php else: ?>
                     <!-- 로그인 안 된 상태일 때: 로그인 폼 -->
                     <form action="/auth/login" method="POST">
-                        <input type="text" name="email" placeholder="이메일" required>
+                        <input type="text" name="email" placeholder="이메일" required >
                         <input type="password" name="password" placeholder="비밀번호" required>
                         <button type="submit">로그인</button>
                         <button onclick="location.href='/auth/register'">회원가입</button>
