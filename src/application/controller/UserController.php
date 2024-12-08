@@ -2,13 +2,20 @@
 
 namespace Uoahir\Phpboard\application\controller;
 
+use Uoahir\Phpboard\application\model\User;
 use Uoahir\Phpboard\application\service\UserService;
 use \Firebase\JWT\JWT;
 
 class UserController {
     private static $instance = null;
 
-    private function __construct() {}
+    private $secretKey;
+    private $algorithm;
+
+    private function __construct() {
+        $this->secretKey = include __DIR__ . '/../../../secret.php';
+        $this->algorithm = 'sha256';
+    }
 
     public static function getInstance() {
         if(self::$instance == null) {
@@ -31,6 +38,9 @@ class UserController {
                 $_SESSION['userName'] = $user -> getName(); // 사용자 이름
                 $_SESSION['loggedIn'] = true;  // 로그인 여부 플래그 설정
 
+                // jwt 토큰 생성 !
+                $token = $this->generateToken($user);
+
                 // 홈 페이지로 리다이렉트
                 header('Location: /');
                 exit;
@@ -38,6 +48,20 @@ class UserController {
                 echo "로그인 실패" . $e->getMessage();
             }
         }
+    }
+
+    public function generateToken($user){
+        $payload = [
+            'iss' => 'your-application-name', // 발행자
+            'iat' => time(),                   // 발행 시간
+            'exp' => time() + 3600,            // 만료 시간 (1시간 후)
+            'data' => [
+                'userId' => $user['id'],       // 사용자 ID
+                'username' => $user['username'] // 사용자 이름
+            ]
+        ];
+
+        return JWT::encode($payload, $this->secretKey, $this->algorithm);
     }
 
     public function logout() {
